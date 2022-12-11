@@ -13,8 +13,6 @@ public class ChangeDay : MonoBehaviour
     [SerializeField]
     float _timeOut;
 
-    [SerializeField]
-    int _time;
     public void Start()
     {
         StartCoroutine(DayChange());
@@ -27,9 +25,9 @@ public class ChangeDay : MonoBehaviour
             _day++;
             _dayText.text = _day.ToString();
             yield return new WaitForSeconds(_timeOut);
-            if(_day == 24)
+            if(_day == 23)
             {
-                _day = 24;
+                _day = 23;
                 _dayText.text = _day.ToString();
                 break;
             }
