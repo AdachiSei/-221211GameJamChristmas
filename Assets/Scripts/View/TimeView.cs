@@ -28,6 +28,7 @@ public class TimeView : MonoBehaviour
             {
                 _timerText.text = "0";
                 _isCounting = false;
+                BackgroundManager.Instance.ChangeBackgrount();
             }
         }
         else

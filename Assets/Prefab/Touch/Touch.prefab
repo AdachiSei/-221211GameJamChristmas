@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2976299845445333089
+--- !u!1 &4642365120637246976
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6040306968005015793}
-  - component: {fileID: 8957032085888577641}
+  - component: {fileID: 4642365120637246990}
+  - component: {fileID: 4642365120637246991}
   m_Layer: 0
-  m_Name: Item (4)
+  m_Name: Touch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6040306968005015793
+--- !u!4 &4642365120637246990
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2976299845445333089}
+  m_GameObject: {fileID: 4642365120637246976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,17 +32,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8957032085888577641
+--- !u!114 &4642365120637246991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2976299845445333089}
+  m_GameObject: {fileID: 4642365120637246976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3769269e0354a2d42ac4a8c97ed0e9a7, type: 3}
+  m_Script: {fileID: 11500000, guid: db893a0589faaad4f83523e2a8bdfa2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
-  _sprite: {fileID: 21300000, guid: 224e6283f2b83b149a627e776821279b, type: 3}
+  _objList:
+  - {fileID: 7291346002470427812, guid: d4068f2934e34dd478e966bfbb01c302, type: 3}
+  - {fileID: 4922656589286907176, guid: 1bc095411dfe9bb4eafa47db76ad814b, type: 3}
+  - {fileID: 1520182035709124610, guid: 605a5ecc62704974dae15532d4d00611, type: 3}
+  - {fileID: 906187196468289979, guid: 0ed6934d546ba8a4e87d07778208f083, type: 3}
+  _parent: {fileID: 4642365120637246976}
