@@ -14,7 +14,16 @@ public class HumanGeneration : MonoBehaviour
     List<GameObject> _couple;
 
     [SerializeField]
+    [Header("カップルのプレハブ")]
     GameObject _coplePrefab;
+
+    [SerializeField]
+    [Header("男性のプレハブ")]
+    GameObject _manPrefab;
+
+    [SerializeField]
+    [Header("女性のプレハブ")]
+    GameObject _womanPrefab;
 
     [SerializeField]
     [Header("生成するオブジェクトの位置")]
@@ -26,7 +35,10 @@ public class HumanGeneration : MonoBehaviour
 
     void Awake()
     {
-        ObjectPool.CreatePool<GameObject>(_couple, _coplePrefab, _generationCount, _generationObject);
+        ObjectPool.CreatePool(_couple, _coplePrefab, _generationCount, _generationObject);
+        ObjectPool.CreatePool(_man, _manPrefab, _generationCount, _generationObject);
+        ObjectPool.CreatePool(_woman, _womanPrefab, _generationCount, _generationObject);
+        
     }
 
     void Update()
