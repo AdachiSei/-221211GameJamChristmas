@@ -37,13 +37,16 @@ public class CreditManager : MonoBehaviour
 
     public void StartCredit()
     {
+        SoundManager.Instance.PlaySFX("クリック");
         if (_creditPanel.gameObject.activeSelf)
         {
+            SoundManager.Instance.PlayBGM("タイトル");
             _credeiText.transform.DOKill();
             _credeiText.transform.position = _defaultPos;
             _creditPanel.gameObject.SetActive(false);
             return;
         }
+        SoundManager.Instance.PlayBGM("クレジット");
         _creditPanel.gameObject.SetActive(true);
         _credeiText.transform.DOMoveY(_lines * _long, _time);
     }

@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DecorationsGenerator : SingletonMonoBehaviour<DecorationsGenerator>
+public class ObjectInstantiate : SingletonMonoBehaviour<ObjectInstantiate>
 {
     //int _random;
     Vector3 _mousePosition;
-
     Vector3 _objPosition;
 
     [SerializeField]
@@ -24,7 +23,6 @@ public class DecorationsGenerator : SingletonMonoBehaviour<DecorationsGenerator>
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SoundManager.Instance.PlaySFX("クリック");
             //_random = Random.Range(0, _objList.Count);
             _mousePosition = Input.mousePosition;
             _mousePosition.z = 10.0f;
@@ -33,7 +31,6 @@ public class DecorationsGenerator : SingletonMonoBehaviour<DecorationsGenerator>
             prefab.transform.SetParent(_parent.transform, true);
         }
     }
-
 
     public void Destroy()
     {

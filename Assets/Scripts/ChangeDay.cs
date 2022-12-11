@@ -1,4 +1,5 @@
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,24 +14,34 @@ public class ChangeDay : SingletonMonoBehaviour<ChangeDay>
     [SerializeField]
     float _timeOut;
 
-    public void Start()
+    [SerializeField]
+    Transform _all;
+
+    [SerializeField]
+    GameObject _result;
+
+    protected override void Awake()
     {
-        StartCoroutine(DayChange());
+        base.Awake();
+        _all.transform.ChangePosY(0);
     }
 
-    IEnumerator DayChange()
+    async public UniTask DayChange()
     {
+        _all.transform.ChangePosY(540);
         while (true)
         {
             _day++;
             _dayText.text = _day.ToString();
-            yield return new WaitForSeconds(_timeOut);
-            if(_day == 23)
+            await UniTask.Delay((int)(_timeOut * 1000));
+            if(_day == 24)
             {
-                _day = 23;
+                _day = 24;
                 _dayText.text = _day.ToString();
                 break;
             }
         }
+        _result.gameObject.SetActive(true);
+        _all.transform.ChangePosY(9999);
     }
 }

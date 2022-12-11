@@ -7,7 +7,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 
 /// <summary>
-/// ƒTƒEƒ“ƒh‚ğŠÇ—‚·‚éScript
+/// ã‚µã‚¦ãƒ³ãƒ‰ã‚’ç®¡ç†ã™ã‚‹Script
 /// </summary>
 public class SoundManager : SingletonMonoBehaviour<SoundManager>
 {
@@ -21,39 +21,39 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     #region Inspector Menber
 
     [SerializeField]
-    [Header("Å‰‚É—¬‚·BGM")]
+    [Header("æœ€åˆã«æµã™BGM")]
     private string _name;
 
     [SerializeField]
-    [Header("‰¹‚ªÁ‚¦‚é‚Ü‚Å‚ÌŠÔ")]
+    [Header("éŸ³ãŒæ¶ˆãˆã‚‹ã¾ã§ã®æ™‚é–“")]
     float _fadeTime = 2f;
 
     [SerializeField]
-    [Header("‰¹Šy")]
+    [Header("éŸ³æ¥½")]
     private BGMData _bGMData = null;
 
     [SerializeField]
-    [Header("Œø‰Ê‰¹")]
+    [Header("åŠ¹æœéŸ³")]
     private SFXData _sFXData = null;
 
     [SerializeField]
-    [Header("‰¹Šy‚ğŠi”[‚·‚éƒIƒuƒWƒFƒNƒg")]
+    [Header("éŸ³æ¥½ã‚’æ ¼ç´ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ")]
     private GameObject _bGMParent = null;
 
     [SerializeField]
-    [Header("Œø‰Ê‰¹‚ğŠi”[‚·‚éƒIƒuƒWƒFƒNƒg")]
+    [Header("åŠ¹æœéŸ³ã‚’æ ¼ç´ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ")]
     private GameObject _sFXParent = null;
 
     [SerializeField]
-    [Header("ƒI[ƒfƒBƒIƒ\[ƒX‚ª‚Â‚¢‚Ä‚¢‚éƒvƒŒƒtƒ@ƒu")]
+    [Header("ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚½ãƒ¼ã‚¹ãŒã¤ã„ã¦ã„ã‚‹ãƒ—ãƒ¬ãƒ•ã‚¡ãƒ–")]
     private AudioSource _audioPrefab = null;
 
     [SerializeField]
-    [Header("BGM—p‚ÌƒI[ƒfƒBƒI")]
+    [Header("BGMç”¨ã®ã‚ªãƒ¼ãƒ‡ã‚£ã‚ª")]
     private List<AudioSource> _bGMAudios = new();
 
     [SerializeField]
-    [Header("SFX—p‚ÌƒI[ƒfƒBƒI")]
+    [Header("SFXç”¨ã®ã‚ªãƒ¼ãƒ‡ã‚£ã‚ª")]
     private List<AudioSource> _sFXAudios = new();
 
     #endregion
@@ -77,16 +77,17 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     protected override void Awake()
     {
         base.Awake();
-        //ƒI[ƒfƒBƒI‚ÌƒvƒŒƒtƒ@ƒu‚ª–³‚©‚Á‚½‚ç
+        //ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã®ãƒ—ãƒ¬ãƒ•ã‚¡ãƒ–ãŒç„¡ã‹ã£ãŸã‚‰
         if (_audioPrefab == null) CreateAudio();
-        //BGM‚ğŠi”[‚·‚éƒIƒuƒWƒFƒNƒg‚ª–³‚©‚Á‚½‚ç
+        //BGMã‚’æ ¼ç´ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç„¡ã‹ã£ãŸã‚‰
         if (_bGMParent == null) CreateBGMParent();
-        //SFX‚ğŠi”[‚·‚éƒIƒuƒWƒFƒNƒg‚ª–³‚©‚Á‚½‚ç
+        //SFXã‚’æ ¼ç´ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç„¡ã‹ã£ãŸã‚‰
         if (_sFXParent == null) CreateSFXParent();
         _audioPrefab.playOnAwake = false;
-        //ƒ|[ƒY—p
+        //ãƒãƒ¼ã‚ºç”¨
         PauseManager.Instance.OnPause += Pause;
         PauseManager.Instance.OnResume += Resume;
+        PlayBGM(_name);
     }
 
     private void OnDisable()
@@ -103,18 +104,18 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     #region Public Methods
 
     /// <summary>
-    /// ‰¹Šy(BGM)‚ğÄ¶‚·‚éŠÖ”
+    /// éŸ³æ¥½(BGM)ã‚’å†ç”Ÿã™ã‚‹é–¢æ•°
     /// </summary>
-    /// <param name="name">Data‚Éİ’è‚µ‚½‰¹Šy(BGM)‚Ì–¼‘O</param>
-    /// <param name="volume">‰¹‚Ì‘å‚«‚³</param>
+    /// <param name="name">Dataã«è¨­å®šã—ãŸéŸ³æ¥½(BGM)ã®åå‰</param>
+    /// <param name="volume">éŸ³ã®å¤§ãã•</param>
     public void PlayBGM(string name,float volume = 1)
     {
-        //BGM‚ğ~‚ß‚é
+        //BGMã‚’æ­¢ã‚ã‚‹
         foreach (var audio in _bGMAudios)
         {
-            if(!audio.isPlaying) audio.Stop();
+            audio.Stop();
         }
-        //Ä¶‚µ‚½‚¢‰¹‚ğŠi”[‚µ‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚©‚çi‚è‚Ş
+        //å†ç”Ÿã—ãŸã„éŸ³ã‚’æ ¼ç´ã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰çµã‚Šè¾¼ã‚€
         foreach (var audio in _bGMAudios)
         {
             if (audio.name == name)
@@ -124,13 +125,13 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
                 return;
             }
         }
-        //Ä¶‚µ‚½‚¢‰¹‚ğŠi”[‚µ‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚ª–³‚©‚Á‚½‚ç
-        //Ä¶‚µ‚½‚¢‰¹‚ğData‚©‚çi‚è‚Ş
+        //å†ç”Ÿã—ãŸã„éŸ³ã‚’æ ¼ç´ã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç„¡ã‹ã£ãŸã‚‰
+        //å†ç”Ÿã—ãŸã„éŸ³ã‚’Dataã‹ã‚‰çµã‚Šè¾¼ã‚€
         foreach (var bGM in _bGMData.BGMs)
         {
             if (bGM.Name == name)
             {
-                //Ä¶‚µ‚½‚¢‰¹‚ğ‚ÌAudio‚ğ¶¬
+                //å†ç”Ÿã—ãŸã„éŸ³ã‚’ã®Audioã‚’ç”Ÿæˆ
                 var newAudio = Instantiate(_audioPrefab);
                 newAudio.transform.SetParent(_bGMParent.transform);
                 _bGMAudios.Add(newAudio);
@@ -142,22 +143,22 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
                 return;
             }
         }
-        Debug.Log("BGM‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½");
+        Debug.Log("BGMãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ");
     }
 
     /// <summary>
-    /// Œø‰Ê‰¹(SFX)‚ğÄ¶‚·‚éŠÖ”
+    /// åŠ¹æœéŸ³(SFX)ã‚’å†ç”Ÿã™ã‚‹é–¢æ•°
     /// </summary>
-    /// <param name="name">Data‚Éİ’è‚µ‚½Œø‰Ê‰¹(SFX)‚Ì–¼‘O</param>
-    /// <param name="volume">‰¹‚Ì‘å‚«‚³</param>
+    /// <param name="name">Dataã«è¨­å®šã—ãŸåŠ¹æœéŸ³(SFX)ã®åå‰</param>
+    /// <param name="volume">éŸ³ã®å¤§ãã•</param>
     async public void PlaySFX(string name, float volume = 1)
     {
-        //Ä¶‚µ‚½‚¢‰¹‚ğData‚©‚ç‚ği‚è‚Ş
+        //å†ç”Ÿã—ãŸã„éŸ³ã‚’Dataã‹ã‚‰ã‚’çµã‚Šè¾¼ã‚€
         foreach (var sFX in _sFXData.SFXes)
         {
             if (sFX.Name == name)
             {
-                //Clip‚ªnull‚ÌAudio‚ğ’T‚·
+                //ClipãŒnullã®Audioã‚’æ¢ã™
                 foreach (var audio in _sFXAudios)
                 {
                     if (audio.clip == null)
@@ -173,7 +174,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
                         return;
                     }
                 }
-                //–³‚©‚Á‚½‚çV‚µ‚­ì‚é
+                //ç„¡ã‹ã£ãŸã‚‰æ–°ã—ãä½œã‚‹
                 var gameObject = Instantiate(_audioPrefab);
                 gameObject.transform.SetParent(_sFXParent.transform);
                 gameObject.name = "NewSFX " + _newAudioNum;
@@ -191,15 +192,15 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
                 return;
             }
         }
-        Debug.Log("SFX‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½");
+        Debug.Log("SFXãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ");
     }
 
     /// <summary>
-    /// BGM‚ğ~‚ß‚éŠÖ”
+    /// BGMã‚’æ­¢ã‚ã‚‹é–¢æ•°
     /// </summary>
     async public UniTask FadeBGM()
     {
-        //BGM‚Ì‰¹—Ê‚ğ­‚µ‚¸‚Â‰º‚°‚é
+        //BGMã®éŸ³é‡ã‚’å°‘ã—ãšã¤ä¸‹ã’ã‚‹
         foreach (var audio in _bGMAudios)
         {
             //audio.Stop();
@@ -209,7 +210,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
 
         await UniTaskForFloat.Delay(_fadeTime);
 
-        //BGM‚ğ~‚ß‚é
+        //BGMã‚’æ­¢ã‚ã‚‹
         foreach (var audio in _bGMAudios)
         {
             if (!audio.isPlaying)
@@ -225,14 +226,14 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     #region Inspector Methods
 
     /// <summary>
-    /// ¶¬‚·‚éSFX—pAudio‚Ì”‚ğ•ÏX‚·‚éŠÖ”
+    /// ç”Ÿæˆã™ã‚‹SFXç”¨Audioã®æ•°ã‚’å¤‰æ›´ã™ã‚‹é–¢æ•°
     /// </summary>
-    /// <param name="count">¶¬‚·‚éAudio‚Ì”</param>
+    /// <param name="count">ç”Ÿæˆã™ã‚‹Audioã®æ•°</param>
     public void ChangeAudioCount(int count) =>
         _audioCount = count;
 
     /// <summary>
-    /// BGM—p‚ÌPrefab‚ğ¶¬‚·‚éŠÖ”
+    /// BGMç”¨ã®Prefabã‚’ç”Ÿæˆã™ã‚‹é–¢æ•°
     /// </summary>
     public void CreateBGM()
     {
@@ -254,7 +255,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     }
     
     /// <summary>
-    /// SFX—p‚ÌPrefab‚ğ¶¬‚·‚éŠÖ”
+    /// SFXç”¨ã®Prefabã‚’ç”Ÿæˆã™ã‚‹é–¢æ•°
     /// </summary>
     public void CreateSFX()
     {
@@ -276,7 +277,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     }
 
     /// <summary>
-    /// BGM&SFX—p‚ÌPrefab‚ğ‘Síœ‚·‚éŠÖ”
+    /// BGM&SFXç”¨ã®Prefabã‚’å…¨å‰Šé™¤ã™ã‚‹é–¢æ•°
     /// </summary>
     public void Init()
     {
@@ -292,7 +293,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     #region Private Methods
 
     /// <summary>
-    /// ‰¹Šy‚ğŠi”[‚·‚éƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éŠÖ”
+    /// éŸ³æ¥½ã‚’æ ¼ç´ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹é–¢æ•°
     /// </summary>
     private void CreateBGMParent()
     {
@@ -302,7 +303,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     }
 
     /// <summary>
-    /// Œø‰Ê‰¹‚ğŠi”[‚·‚éƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éŠÖ”
+    /// åŠ¹æœéŸ³ã‚’æ ¼ç´ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹é–¢æ•°
     /// </summary>
     private void CreateSFXParent()
     {
@@ -312,7 +313,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     }
 
     /// <summary>
-    /// ƒI[ƒfƒBƒIƒ\[ƒX‚ª•t‚«ƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éŠÖ”
+    /// ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚½ãƒ¼ã‚¹ãŒä»˜ãã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹é–¢æ•°
     /// </summary>
     private void CreateAudio()
     {
@@ -324,7 +325,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     }
 
     /// <summary>
-    /// BGM—p‚ÌPrefab‚ğ‘Síœ‚·‚éŠÖ”
+    /// BGMç”¨ã®Prefabã‚’å…¨å‰Šé™¤ã™ã‚‹é–¢æ•°
     /// </summary>
     private void InitBGM()
     {
@@ -340,7 +341,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     }
 
     /// <summary>
-    /// SFX—p‚ÌPrefab‚ğ‘Síœ‚·‚éŠÖ”
+    /// SFXç”¨ã®Prefabã‚’å…¨å‰Šé™¤ã™ã‚‹é–¢æ•°
     /// </summary>
     private void InitSFX()
     {
@@ -357,7 +358,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
 
 
     /// <summary>
-    /// ƒ|[ƒY—p‚ÌŠÖ”
+    /// ãƒãƒ¼ã‚ºç”¨ã®é–¢æ•°
     /// </summary>
     private void Pause()
     {
@@ -372,7 +373,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     }
 
     /// <summary>
-    /// ƒ|[ƒY‰ğœ—p‚ÌŠÖ”
+    /// ãƒãƒ¼ã‚ºè§£é™¤ç”¨ã®é–¢æ•°
     /// </summary>
     private void Resume()
     {

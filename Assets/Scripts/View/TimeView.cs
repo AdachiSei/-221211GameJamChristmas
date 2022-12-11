@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Sorry
+/// </summary>
 public class TimeView : MonoBehaviour
 {
     [SerializeField]
@@ -27,7 +30,9 @@ public class TimeView : MonoBehaviour
             if (_isCounting)
             {
                 _timerText.text = "0";
+                _timerText.gameObject.SetActive(false);
                 _isCounting = false;
+                SoundManager.Instance.FadeBGM();
                 BackgroundManager.Instance.ChangeBackgrount();
             }
         }
