@@ -119,4 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveTime: 1
-  __delayTime: 0.7
+  __delayTime: 6

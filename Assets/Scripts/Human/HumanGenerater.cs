@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanGeneration : MonoBehaviour
+public class HumanGenerater : MonoBehaviour
 {
     [SerializeField]
     [Header("カップルのプレハブ")]
@@ -32,7 +32,7 @@ public class HumanGeneration : MonoBehaviour
     {
        _randomCount += Time.deltaTime;
 
-        if(_randomCount >= 10f)
+        if(_randomCount >= 5f)
         {
             _randomNum = Random.RandomRange(0, 15);
             _randomCount = 0f;

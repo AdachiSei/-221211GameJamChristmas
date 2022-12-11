@@ -15,18 +15,22 @@ public class HumanController : MonoBehaviour
     [SerializeField]
     Vector2 _trrePos;
 
-    CreateObject _animation;
+    CreateEmotionAnimation _animation;
 
     [System.Obsolete]
-    async void Awake()
+    async private void OnEnable()
     {
+        _animation = GetComponent<CreateEmotionAnimation>();
         transform.DOMove(_trrePos, _moveSpeed);
 
-        _animationTime = Random.RandomRange(20, max: 30);
+        _animationTime = Random.RandomRange(60, max: 240);
         await UniTask.DelayFrame(_animationTime);
-
 
         _animation.Create();
         Debug.Log("アニメーションを呼んだ");
+
+        await UniTask.DelayFrame(1200);
+        this.gameObject.SetActive(false);
+
     }
 }
