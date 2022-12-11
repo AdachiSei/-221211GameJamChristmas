@@ -10,8 +10,6 @@ public class CreateObject : SingletonMonoBehaviour<CreateObject>
     [SerializeField]
     GameObject[] _gameObject;
 
-    Vector3 _mousePosition;
-
     int _num;
 
     [SerializeField]
@@ -23,9 +21,8 @@ public class CreateObject : SingletonMonoBehaviour<CreateObject>
 
     public void Create()
     {
+        ObjectPool.CreatePool(_gameObjects, _gameObject[_num], 1, _parent);
         _num = Random.Range(0, _gameObject.Length);
-        _mousePosition = Input.mousePosition;
-        _mousePosition.z = 10.0f;
         ObjectPool.UseObject(_gameObjects, _gameObject[_num], _parent);
     }
 }
