@@ -316,7 +316,12 @@ MonoBehaviour:
   - {fileID: 1347516381183991965, guid: d3e8db0504d85db41910ef284dcf61e8, type: 3}
   - {fileID: 673439613282305771, guid: bb125f5f18423694687c140e4c5ad1c5, type: 3}
   - {fileID: 6690443933818550298, guid: 0352dde8822016640ac2bf68346c7546, type: 3}
+<<<<<<< HEAD
   _parent: {fileID: 460425440}
+=======
+  - {fileID: 1347516381183991965, guid: d3e8db0504d85db41910ef284dcf61e8, type: 3}
+  _parent: {fileID: 0}
+>>>>>>> a653ea524e9a268c3fb422f92f3d2fdfecdc00d7
 --- !u!4 &460425440
 Transform:
   m_ObjectHideFlags: 0
