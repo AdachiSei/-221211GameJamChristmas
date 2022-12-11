@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ƒIƒuƒWƒFƒNƒgƒv[ƒ‹—p‚ÌScript
+/// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ—ãƒ¼ãƒ«ç”¨ã®Script
 /// </summary>
 public class ObjectPool : MonoBehaviour
 {
     #region Pooling Methods
 
     /// <summary>
-    /// ƒIƒuƒWƒFƒNƒg‚ğ¶¬‚µ‚ÄListŠi”[‚·‚éŠÖ”
+    /// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã—ã¦Listæ ¼ç´ã™ã‚‹é–¢æ•°
     /// </summary>
-    /// <typeparam name="T">ƒv[ƒŠƒ“ƒO‚µ‚½‚¢ƒIƒuƒWƒFƒNƒg‚ÌŒ^</typeparam>
-    /// <param name="pools">ƒIƒuƒWƒFƒNƒg‚ğŠi”[‚µ‚Ä‚¢‚éList</param>
-    /// <param name="prefab">ƒIƒuƒWƒFƒNƒg‚ÌƒvƒŒƒtƒ@ƒu</param>
-    /// <param name="count">¶¬‚·‚éƒIƒuƒWƒFƒNƒg‚Ì”</param>
-    /// <param name="parent">ƒIƒuƒWƒFƒNƒg‚ğŠi”[‚·‚éeƒIƒuƒWƒFƒNƒg</param>
+    /// <typeparam name="T">ãƒ—ãƒ¼ãƒªãƒ³ã‚°ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‹</typeparam>
+    /// <param name="pools">ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ ¼ç´ã—ã¦ã„ã‚‹List</param>
+    /// <param name="prefab">ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ—ãƒ¬ãƒ•ã‚¡ãƒ–</param>
+    /// <param name="count">ç”Ÿæˆã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°</param>
+    /// <param name="parent">ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ ¼ç´ã™ã‚‹è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
     public static void CreatePool<T>(IReadOnlyList<T> pools,T prefab, int count,Transform parent = null) where T : class
     {
         var castedList = pools as List<T>;
         for (int i = 0; i < count; i++)
         {
             var newPool = Instantiate(prefab as GameObject);
+            newPool.gameObject.SetActive(false);
             newPool.transform.SetParent(parent?.transform);
             var pool = newPool as T;
             castedList.Add(pool);
@@ -30,13 +31,13 @@ public class ObjectPool : MonoBehaviour
     }
 
     /// <summary>
-    /// ”ñƒAƒNƒeƒBƒu‚ÌƒIƒuƒWƒFƒNƒg‚ğ’T‚µ‚ÄƒAƒNƒeƒBƒu‰»‚µ‚Ä‚­‚ê‚éŠÖ”
+    /// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¢ã—ã¦ã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–ã—ã¦ãã‚Œã‚‹é–¢æ•°
     /// </summary>
-    /// <typeparam name="T">ƒv[ƒŠƒ“ƒO‚µ‚½‚¢ƒIƒuƒWƒFƒNƒg‚ÌŒ^</typeparam>
-    /// <param name="pools">ƒIƒuƒWƒFƒNƒg‚ğŠi”[‚µ‚Ä‚¢‚éList</param>
-    /// <param name="prefab">ƒIƒuƒWƒFƒNƒg‚ÌƒvƒŒƒtƒ@ƒu</param>
-    /// <param name="parent">ƒIƒuƒWƒFƒNƒg‚ğŠi”[‚·‚éeƒIƒuƒWƒFƒNƒg</param>
-    /// <returns>”ñƒAƒNƒeƒBƒu‚¾‚Á‚½ƒIƒuƒWƒFƒNƒg</returns>
+    /// <typeparam name="T">ãƒ—ãƒ¼ãƒªãƒ³ã‚°ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‹</typeparam>
+    /// <param name="pools">ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ ¼ç´ã—ã¦ã„ã‚‹List</param>
+    /// <param name="prefab">ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ—ãƒ¬ãƒ•ã‚¡ãƒ–</param>
+    /// <param name="parent">ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ ¼ç´ã™ã‚‹è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
+    /// <returns>éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã ã£ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</returns>
     public static T UseObject<T>(IReadOnlyList<T> pools,T prefab ,Transform parent = null) where T : class
     {
         var poolObjects = pools as List<GameObject>;
