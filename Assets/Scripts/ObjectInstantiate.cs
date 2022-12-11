@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ObjectInstantiate : MonoBehaviour
 {
-    int _random;
+    //int _random;
     Vector3 _mousePosition;
     Vector3 _objPosition;
+
+    [SerializeField]
+    ItemWindowView _itemWindowView;
 
     [SerializeField] 
     [Header("オブジェクトリスト")]
@@ -20,11 +23,11 @@ public class ObjectInstantiate : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _random = Random.Range(0, _objList.Count);
+            //_random = Random.Range(0, _objList.Count);
             _mousePosition = Input.mousePosition;
             _mousePosition.z = 10.0f;
             _objPosition = Camera.main.ScreenToWorldPoint(_mousePosition);
-            var prefab = Instantiate(_objList[_random], _objPosition, Quaternion.identity);
+            var prefab = Instantiate(_itemWindowView.NowItem, _objPosition, Quaternion.identity);
             prefab.transform.SetParent(_parent.transform, true);
         }
     }

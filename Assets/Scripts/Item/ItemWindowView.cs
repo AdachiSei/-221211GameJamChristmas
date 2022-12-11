@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 public class ItemWindowView : MonoBehaviour
 {
-    public Item NowItem => _itemPrefabs[_nowIndex];
+    public SpriteRenderer NowItem => _itemPrefabs[_nowIndex];
 
     [SerializeField]
     [Header("飾り付けのプレファブ")]
-    Item[] _itemPrefabs;
+    SpriteRenderer[] _itemPrefabs;
 
     [SerializeField]
     [Header("飾り付けのUI")]

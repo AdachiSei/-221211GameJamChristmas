@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChangeDay : MonoBehaviour
+public class ChangeDay : SingletonMonoBehaviour<ChangeDay>
 {
     [SerializeField]
     Text _dayText;

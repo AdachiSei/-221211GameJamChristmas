@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Item : MonoBehaviour
 {
+    public Sprite Decoration => _sprite;
+
     [SerializeField]
     [Header("名前")]
     string _name;
