@@ -36,13 +36,11 @@ public class ItemWindowView : MonoBehaviour
         {
             ChangeItem(OFFSET);
             _isChanging = false;
-            Debug.Log(Input.GetAxis(InputName.MOUSE_SCROLLWHEEL));
         }
         else if (Input.GetAxis(InputName.MOUSE_SCROLLWHEEL) > 0)
         {
             ChangeItem(-OFFSET);
             _isChanging = false;
-            Debug.Log(Input.GetAxis(InputName.MOUSE_SCROLLWHEEL));
         }
     }
 
