@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectInstantiate : MonoBehaviour
+public class DecorationsGenerator : MonoBehaviour
 {
     //int _random;
     Vector3 _mousePosition;
+
     Vector3 _objPosition;
 
     [SerializeField]
