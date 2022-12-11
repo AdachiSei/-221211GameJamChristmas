@@ -404,11 +404,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1789619619799368423, guid: 562b7afd18b21d848860860061a4f39c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 475
       objectReference: {fileID: 0}
     - target: {fileID: 1789619619799368423, guid: 562b7afd18b21d848860860061a4f39c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 503
+      value: 84
       objectReference: {fileID: 0}
     - target: {fileID: 1789619619799368423, guid: 562b7afd18b21d848860860061a4f39c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1821,14 +1821,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1945632842}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadPrevScene
-        m_Mode: 1
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: TitleScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1623609611

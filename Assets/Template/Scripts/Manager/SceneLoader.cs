@@ -11,34 +11,34 @@ using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 
 /// <summary>
-/// ƒV[ƒ“‚ğ“Ç‚İ‚Ş‚½‚ß‚É•K—v‚ÈScript
+/// ã‚·ãƒ¼ãƒ³ã‚’èª­ã¿è¾¼ã‚€ãŸã‚ã«å¿…è¦ãªScript
 /// </summary>
 public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
 {
     #region Inspecter Member
 
     [SerializeField]
-    [Header("ƒ[ƒfƒBƒ“ƒO‚É‚­‚é‚­‚é‚·‚éŠG")]
+    [Header("ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æ™‚ã«ãã‚‹ãã‚‹ã™ã‚‹çµµ")]
     Image _loadingImage;
 
     [SerializeField]
-    [Header("ƒ[ƒfƒBƒ“ƒO‚É•\¦‚·‚éƒpƒlƒ‹")]
+    [Header("ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æ™‚ã«è¡¨ç¤ºã™ã‚‹ãƒ‘ãƒãƒ«")]
     Image _loadingPanel;
 
     [SerializeField]
-    [Header("ƒtƒF[ƒh‚Ìí—Ş")]
+    [Header("ãƒ•ã‚§ãƒ¼ãƒ‰ã®ç¨®é¡")]
     bool _isSlide;
 
     [SerializeField]
-    [Header("ƒtƒF[ƒh‚·‚é‚Ü‚Å‚ÌŠÔ")]
+    [Header("ãƒ•ã‚§ãƒ¼ãƒ‰ã™ã‚‹ã¾ã§ã®æ™‚é–“")]
     private float _fadeTime = 1f;
 
     [SerializeField]
-    [Header("‚­‚é‚­‚é‚·‚éŠG‚Ì‰ñ“]‘¬“x")]
+    [Header("ãã‚‹ãã‚‹ã™ã‚‹çµµã®å›è»¢é€Ÿåº¦")]
     private float _loadingImageSpeed = 1f;
 
     [SerializeField]
-    [Header("‘S‚Ä‚ÌƒV[ƒ“‚Ì–¼‘O")]
+    [Header("å…¨ã¦ã®ã‚·ãƒ¼ãƒ³ã®åå‰")]
     private string[] _sceneNames;
 
     #endregion
@@ -63,7 +63,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     protected override void Awake()
     {
         base.Awake();
-        CheckScenesName();
+        //CheckScenesName();
         FadeIn(_isSlide);
         _loadingImage?.gameObject.SetActive(false);
     }
@@ -73,9 +73,9 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     #region Public Methods
 
     /// <summary>
-    /// Scene‚ğ“Ç‚İ‚ŞŠÖ”
+    /// Sceneã‚’èª­ã¿è¾¼ã‚€é–¢æ•°
     /// </summary>
-    /// <param name="name">Scene‚Ì–¼‘O</param>
+    /// <param name="name">Sceneã®åå‰</param>
     async public void LoadScene(string name)
     {
         if (_loadingPanel) await FadeOut(_isSlide);
@@ -89,7 +89,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     }
 
     /// <summary>
-    /// ¡‚ÌScene‚ğƒŠƒ[ƒh‚·‚é‚½‚ß‚ÌŠÖ”
+    /// ä»Šã®Sceneã‚’ãƒªãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãŸã‚ã®é–¢æ•°
     /// </summary>
     public void ReloadScene()
     {
@@ -98,7 +98,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     }
 
     /// <summary>
-    /// Ÿ‚ÌScene‚ğ“Ç‚İ‚ŞŠÖ”
+    /// æ¬¡ã®Sceneã‚’èª­ã¿è¾¼ã‚€é–¢æ•°
     /// </summary>
     public void LoadNextScene()
     {
@@ -106,7 +106,7 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
     }
 
     /// <summary>
-    /// ‘O‚ÌScene‚ğ“Ç‚İ‚ŞŠÖ”
+    /// å‰ã®Sceneã‚’èª­ã¿è¾¼ã‚€é–¢æ•°
     /// </summary>
     public void LoadPrevScene()
     {
@@ -115,80 +115,80 @@ public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
 
     #endregion
 
-    #region Inspector Method
+    //#region Inspector Method
 
-    /// <summary>
-    /// AssetƒtƒHƒ‹ƒ_‚Ì’†‚É‚ ‚éScene‚Ì–¼‘O‚ğ‘S‚Ä‚Æ‚Á‚Ä‚­‚éŠÖ”
-    /// </summary>
-    public void GetSceneName()
-    {
-        var offset = 0;
-        var isPlaying = EditorApplication.isPlaying;
-        if (isPlaying == false)
-        {
-            offset = 1;
-        }
-        Array.Resize(ref _sceneNames, EditorBuildSettings.scenes.Length + offset);
-        List<string> sceneNames = new();
-        //BuildSetings‚É“ü‚Á‚Ä‚¢‚éScene‚Ì–¼‘O‚ğ‘S‚Ä‚Æ‚Á‚Ä‚­‚é
-        foreach (var scene in EditorBuildSettings.scenes)
-        {
-            var name = Path.GetFileNameWithoutExtension(scene.path);
-            sceneNames.Add(name);
-        }
-        //d•¡‚µ‚Ä‚¢‚é—v‘f‚ğÁ‚µ‚Ä‚©‚ç•À‚Ñ‘Ö‚¦
-        sceneNames = new(sceneNames.Distinct());
-        sceneNames = new(sceneNames.OrderBy(name =>
-       {
-           var sceneNum = name.Split("Scene");
-           if (sceneNum[OFFSET] == "")
-           {
-               sceneNum = new[] { sceneNum[0], "0" };
-           }
-           return int.Parse(sceneNum[OFFSET]);
-       }));
+    ///// <summary>
+    ///// Assetãƒ•ã‚©ãƒ«ãƒ€ã®ä¸­ã«ã‚ã‚‹Sceneã®åå‰ã‚’å…¨ã¦ã¨ã£ã¦ãã‚‹é–¢æ•°
+    ///// </summary>
+    //public void GetSceneName()
+    //{
+    //    var offset = 0;
+    //    var isPlaying = EditorApplication.isPlaying;
+    //    if (isPlaying == false)
+    //    {
+    //        offset = 1;
+    //    }
+    //    Array.Resize(ref _sceneNames, EditorBuildSettings.scenes.Length + offset);
+    //    List<string> sceneNames = new();
+    //    //BuildSetingsã«å…¥ã£ã¦ã„ã‚‹Sceneã®åå‰ã‚’å…¨ã¦ã¨ã£ã¦ãã‚‹
+    //    foreach (var scene in EditorBuildSettings.scenes)
+    //    {
+    //        var name = Path.GetFileNameWithoutExtension(scene.path);
+    //        sceneNames.Add(name);
+    //    }
+    //    //é‡è¤‡ã—ã¦ã„ã‚‹è¦ç´ ã‚’æ¶ˆã—ã¦ã‹ã‚‰ä¸¦ã³æ›¿ãˆ
+    //    sceneNames = new(sceneNames.Distinct());
+    //    sceneNames = new(sceneNames.OrderBy(name =>
+    //   {
+    //       var sceneNum = name.Split("Scene");
+    //       if (sceneNum[OFFSET] == "")
+    //       {
+    //           sceneNum = new[] { sceneNum[0], "0" };
+    //       }
+    //       return int.Parse(sceneNum[OFFSET]);
+    //   }));
 
-        for (int i = 0; i < sceneNames.Count; i++)
-        {
-            _sceneNames[i] = sceneNames[i];
-        }
-        if (isPlaying == false)
-        {
-            _sceneNames[_sceneNames.Length - offset] = "RemoveThis";
-        }
-    }
+    //    for (int i = 0; i < sceneNames.Count; i++)
+    //    {
+    //        _sceneNames[i] = sceneNames[i];
+    //    }
+    //    if (isPlaying == false)
+    //    {
+    //        _sceneNames[_sceneNames.Length - offset] = "RemoveThis";
+    //    }
+    //}
 
-    #endregion
+    //#endregion
 
     #region Private Mehod
 
     /// <summary>
-    /// BuildSettings‚ÆSceneLoader‚ÌScene‚ªˆá‚Á‚½‚çŒÄ‚Ñ‚È‚¨‚·ŠÖ”
+    /// BuildSettingsã¨SceneLoaderã®SceneãŒé•ã£ãŸã‚‰å‘¼ã³ãªãŠã™é–¢æ•°
     /// </summary>
-    private void CheckScenesName()
-    {   
-        if (_sceneNames.Length != EditorBuildSettings.scenes.Length)
-        {
-            GetSceneName();
-        }
-        else
-        {
-            foreach (var scene in EditorBuildSettings.scenes)
-            {
-                var sceneName = Path.GetFileNameWithoutExtension(scene.path).ToString();
-                if (_sceneNames.Any(name => name == sceneName) == false)
-                {
-                    GetSceneName();
-                    return;
-                }
-            }
-        }
-    }
+    //private void CheckScenesName()
+    //{   
+    //    if (_sceneNames.Length != EditorBuildSettings.scenes.Length)
+    //    {
+    //        GetSceneName();
+    //    }
+    //    else
+    //    {
+    //        foreach (var scene in EditorBuildSettings.scenes)
+    //        {
+    //            var sceneName = Path.GetFileNameWithoutExtension(scene.path).ToString();
+    //            if (_sceneNames.Any(name => name == sceneName) == false)
+    //            {
+    //                GetSceneName();
+    //                return;
+    //            }
+    //        }
+    //    }
+    //}
 
     /// <summary>
-    /// “Ç‚İ‚İ‚½‚¢Scene
+    /// èª­ã¿è¾¼ã¿ãŸã„Scene
     /// </summary>
-    /// <param name="_isNext">Ÿ‚ÌScene‚©</param>
+    /// <param name="_isNext">æ¬¡ã®Sceneã‹</param>
     private void WantToLoadScene(bool _isNext)
     {
         var offset = -1;

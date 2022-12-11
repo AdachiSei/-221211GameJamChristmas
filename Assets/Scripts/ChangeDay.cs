@@ -20,12 +20,6 @@ public class ChangeDay : SingletonMonoBehaviour<ChangeDay>
     [SerializeField]
     GameObject _result;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        _all.transform.ChangePosY(0);
-    }
-
     async public UniTask DayChange()
     {
         _all.transform.ChangePosY(540);

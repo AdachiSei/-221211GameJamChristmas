@@ -25,10 +25,10 @@ public class SceneLoaderEditor : Editor
         {
             EditorGUILayout.Space();
 
-            EditorGUILayout.LabelField("<b>Scene‚Ì–¼‘O‚ğ‘S‚Ä‚Æ‚Á‚Ä‚­‚é</b>",style);
+            EditorGUILayout.LabelField("<b>Sceneã®åå‰ã‚’å…¨ã¦ã¨ã£ã¦ãã‚‹</b>",style);
             if (GUILayout.Button("GetSceneName"))
             {
-                sceneLoader.GetSceneName();
+                //sceneLoader.GetSceneName();
             }
         }
     }
