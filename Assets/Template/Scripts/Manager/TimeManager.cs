@@ -25,10 +25,18 @@ public class TimeManager : SingletonMonoBehaviour<TimeManager>
     #region Private Member
 
     private bool _isCounting;
+    private bool _isPause;
 
     #endregion
 
     #region Unity Method
+
+    protected override void Awake()
+    {
+        base.Awake();
+        PauseManager.Instance.OnPause += Pause;
+        PauseManager.Instance.OnResume+= Resume;
+    }
 
     //private void Update()
     //{
@@ -37,6 +45,15 @@ public class TimeManager : SingletonMonoBehaviour<TimeManager>
     //        _timer += Time.deltaTime;
     //    }
     //}
+
+    private void OnDisable()
+    {
+        if(IsDontDestroy)
+        {
+            PauseManager.Instance.OnPause -= Pause;
+            PauseManager.Instance.OnResume -= Resume;
+        }
+    }
 
     #endregion
 
@@ -67,6 +84,7 @@ public class TimeManager : SingletonMonoBehaviour<TimeManager>
     {
         while(_isCounting)
         {
+            if (_isPause) await UniTask.WaitUntil(() => !_isPause);
             await UniTask.NextFrame();
             _timer += Time.deltaTime;
         }
@@ -78,7 +96,12 @@ public class TimeManager : SingletonMonoBehaviour<TimeManager>
 
     private void Pause()
     {
-        
+        _isPause = true;
+    }
+
+    private void Resume()
+    {
+        _isPause = false;
     }
 
     #endregion
