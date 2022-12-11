@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimeView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    [Header("タイマーのテキスト")]
+    Text _timerText;
+
+    private void Awake()
     {
-        
+        TimeManager.Instance.StartTimer();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        _timerText.text = TimeManager.Instance.Timer.ToString("f0");
     }
 }

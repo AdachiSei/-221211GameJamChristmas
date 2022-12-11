@@ -35,7 +35,6 @@ public class CreditManager : MonoBehaviour
         _credeiText.text = _credit;
     }
 
-
     public void StartCredit()
     {
         if (_creditPanel.gameObject.activeSelf)

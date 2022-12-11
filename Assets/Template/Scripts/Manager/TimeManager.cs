@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 時間を管理するマネージャー
+/// 譎る俣繧堤ｮ｡逅�縺吶ｋ繝槭ロ繝ｼ繧ｸ繝｣繝ｼ
 /// </summary>
 public class TimeManager : SingletonMonoBehaviour<TimeManager>
 {
@@ -17,14 +17,14 @@ public class TimeManager : SingletonMonoBehaviour<TimeManager>
     #region Inspector Member
 
     [SerializeField]
-    [Header("タイマー")]
+    [Header("繧ｿ繧､繝槭�ｼ")]
     private float _timer = 0f;
 
     #endregion
 
     #region Private Member
 
-    private bool _isCounting = true;
+    private bool _isCounting;
 
     #endregion
 
@@ -70,6 +70,15 @@ public class TimeManager : SingletonMonoBehaviour<TimeManager>
             await UniTask.NextFrame();
             _timer += Time.deltaTime;
         }
+    }
+
+    #endregion
+
+    #region 
+
+    private void Pause()
+    {
+        
     }
 
     #endregion
