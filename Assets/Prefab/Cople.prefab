@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4105824868849411835}
   - component: {fileID: 4105824868849411832}
   - component: {fileID: 4105824868849411833}
+  - component: {fileID: 2768024787588048652}
   m_Layer: 0
   m_Name: Cople
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0029170d14ce6c04c9f45c22cdae5559, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6fdfdf67f85a889418f70a6547bee4c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,3 +101,22 @@ MonoBehaviour:
   _moveSpeed: 3
   _animationTime: 0
   _trrePos: {x: 0, y: 0}
+--- !u!114 &2768024787588048652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4105824868849411838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069229729e13dd041861e1906405f210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDontDestroy: 0
+  _gameObjects: []
+  _gameObject:
+  - {fileID: 673439613282305771, guid: bb125f5f18423694687c140e4c5ad1c5, type: 3}
+  - {fileID: 1347516381183991965, guid: d3e8db0504d85db41910ef284dcf61e8, type: 3}
+  - {fileID: 6690443933818550298, guid: 0352dde8822016640ac2bf68346c7546, type: 3}
+  _parent: {fileID: 4105824868849411835}

@@ -15,6 +15,8 @@ public class HumanController : MonoBehaviour
     [SerializeField]
     Vector2 _trrePos;
 
+    CreateObject _animation;
+
     [System.Obsolete]
     async void Awake()
     {
@@ -23,7 +25,8 @@ public class HumanController : MonoBehaviour
         _animationTime = Random.RandomRange(20, max: 30);
         await UniTask.DelayFrame(_animationTime);
 
-        //アニメーションを実行
+
+        _animation.Create();
         Debug.Log("アニメーションを呼んだ");
     }
 }
