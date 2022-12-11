@@ -6,7 +6,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine.Events;
 using System;
 
-public class Test1 : MonoBehaviour
+public class MoveObject : MonoBehaviour
 {
     [SerializeField]
     [Header("オブジェクトが移動するまでの時間")]
@@ -20,18 +20,25 @@ public class Test1 : MonoBehaviour
         transform.DOLocalMoveY(1f, _moveTime);
         transform.DOScale(new Vector2(1.3f, 1.3f), _moveTime);
 
-        DelayAsync(_moveTime + __delayTime, () => { Test(); }).Forget();
+        DelayAsync(_moveTime + __delayTime, () => { Delete(); }).Forget();
     }
-    private void Test()
+    private void Delete()
     {
         print("オブジェクトを削除");
         this.gameObject.SetActive(false);
-        //Destroy(this.gameObject);
     }
 
     private async UniTask DelayAsync(float seconds, UnityAction callback)
     {
         await UniTask.Delay(TimeSpan.FromSeconds(seconds));
         callback?.Invoke();
+    }
+
+    private void OnEnable()
+    {
+        transform.DOLocalMoveY(1f, _moveTime);
+        transform.DOScale(new Vector2(1.3f, 1.3f), _moveTime);
+
+        DelayAsync(_moveTime + __delayTime, () => { Delete(); }).Forget();
     }
 }
