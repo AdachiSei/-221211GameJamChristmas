@@ -152,10 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069229729e13dd041861e1906405f210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameObjects: []
   _gameObject:
   - {fileID: 673439613282305771, guid: bb125f5f18423694687c140e4c5ad1c5, type: 3}
   - {fileID: 6690443933818550298, guid: 0352dde8822016640ac2bf68346c7546, type: 3}
   - {fileID: 1347516381183991965, guid: d3e8db0504d85db41910ef284dcf61e8, type: 3}
+  _parent: {fileID: 0}
 --- !u!4 &460425440
 Transform:
   m_ObjectHideFlags: 0
